@@ -18,6 +18,9 @@ def create_greeting_message():
 @app.route('/version')
 def return_version_number():
     return f"<h2>App version: {app_version}</h2>\n"
+@app.route('/checkpwd')
+def checkpwd():
+    return f"<h2>This was written without rebuilding image</h2>\n"
 
 @app.route('/health')
 def health_check():
