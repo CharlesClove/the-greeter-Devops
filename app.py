@@ -21,6 +21,8 @@ def return_version_number():
 @app.route('/checkpwd')
 def checkpwd():
     return f"<h2>This was written without rebuilding image</h2>\n"
+def liczby():
+    return f"1"
 
 @app.route('/health')
 def health_check():
