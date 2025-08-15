@@ -1,7 +1,7 @@
 import os
 from flask import Flask
 
-app = flask(__name__)
+app = Flask(__name__)
 
 greeting_message = os.environ.get("GREETING_MESSAGE", "Hello, user!")
 
@@ -18,6 +18,10 @@ def create_greeting_message():
 @app.route('/version')
 def return_version_number():
     return f"<h2>App version: {app_version}</h2>\n"
+
+@app.route('/health')
+def health_check():
+    return "OK", 200
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
