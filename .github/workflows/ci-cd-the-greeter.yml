@@ -48,12 +48,21 @@ jobs:
                 id: get_version
                 run: echo "APP_VERSION=$(cat VERSION)" >> $GITHUB_ENV
 
+            -   name: Docker meta craator
+                id: meta
+                uses: docker/metadata-action@v5
+                with:
+                      images: "${{ secrets.DOCKERHUB_USERNAME }}/the-greeter"
+                      tags: |
+                        type=raw,value=${{ env.APP_VERSION }}
+                        type=raw,value=latest
+
             -   name: Build and push Docker image
                 uses: docker/build-push-action@v4
                 with:
                     context: .
                     push: true
                     tags: |
-                        ${{ secrets.DOCKERHUB_USERNAME }}/the-greeter:${{ env.APP_VERSION }}
-                        ${{ secrets.DOCKERHUB_USERNAME }}/the-greeter:latest
+                      tags: ${{ steps.meta.outputs.tags }}
+                      labels: ${{ steps.meta.outputs.labels }}
             
