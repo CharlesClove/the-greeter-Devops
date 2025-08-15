@@ -48,7 +48,7 @@ jobs:
                 id: get_version
                 run: echo "APP_VERSION=$(cat VERSION)" >> $GITHUB_ENV
 
-            -   name: Docker meta craator
+            -   name: Docker meta creator
                 id: meta
                 uses: docker/metadata-action@v5
                 with:
@@ -62,7 +62,5 @@ jobs:
                 with:
                     context: .
                     push: true
-                    tags: |
-                      tags: ${{ steps.meta.outputs.tags }}
-                      labels: ${{ steps.meta.outputs.labels }}
-            
+                    tags: ${{ steps.meta.outputs.tags }}
+                    labels: ${{ steps.meta.outputs.labels }}
