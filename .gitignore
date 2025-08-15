@@ -4,4 +4,5 @@ __pycache__/
 venv/
 token
 .run-docker-w-pwd.swp
-
+scripts/
+scripts
